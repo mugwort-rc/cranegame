@@ -1,0 +1,238 @@
+{
+  "width": 640,
+  "height": 320,
+  "fps": 20,
+  "sprites": {
+    "background": {
+      "image": "img/background.png",
+      "width": 640,
+      "height": 320
+    },
+    "down_btn": {
+      "image": "img/down.png",
+      "x": 520,
+      "y": 260,
+      "width": 60,
+      "height": 60
+    },
+    "start_btn": {
+      "image": "img/start.png",
+      "x": 580,
+      "y": 260,
+      "width": 60,
+      "height": 60
+    },
+    "crane": {
+      "image": "img/crane.png",
+      "width": 80,
+      "height": 160
+    }
+  },
+  "rootScene": "root",
+  "scenes": {
+    "root": {
+      "spriteExtends": {
+        "start_btn": {
+          "events": {
+            "touchStart": [
+              {
+                "function": "replaceScene",
+                "args": {
+                  "scene": "craneStart"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "drawOrder": [
+        "background",
+        "crane",
+        "start_btn"
+      ]
+    },
+    "craneStart": {
+      "spriteExtends": {
+        "start_btn": {
+          "frame": 1,
+          "events": {
+            "touchStart": [
+              {
+                "function": "replaceScene",
+                "args": {
+                  "scene": "root"
+                }
+              }
+            ]
+          }
+        },
+        "down_btn": {
+          "events": {
+            "touchStart": [
+              {
+                "function": "replaceScene",
+                "args": {
+                  "scene": "craneDown"
+                }
+              }
+            ]
+          }
+        },
+        "crane": {
+          "timelines": [
+            {
+              "type": "moveBy",
+              "x": 560, "y": 0, "frame": 100
+            },
+            {
+              "type": "then",
+              "callback": {
+                "function": "replaceScene",
+                "args": {
+                  "scene": "craneDown"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "drawOrder": [
+        "background",
+        "crane",
+        "down_btn",
+        "start_btn"
+      ]
+    },
+    "craneDown": {
+      "spriteExtends": {
+        "start_btn": {
+          "frame": 1,
+          "events": {
+            "touchStart": [
+              {
+                "function": "replaceScene",
+                "args": {
+                  "scene": "root"
+                }
+              }
+            ]
+          }
+        },
+        "crane": {
+          "x": "#craneStart.crane.x",
+          "y": "#craneStart.crane.y",
+          "timelines": [
+            {
+              "type": "moveBy",
+              "x": 0, "y": 100, "frame": 20
+            },
+            {
+              "type": "then",
+              "callback": {
+                "function": "replaceScene",
+                "args": {
+                  "scene": "craneUp"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "drawOrder": [
+        "background",
+        "crane",
+        "start_btn"
+      ]
+    },
+    "craneUp": {
+      "spriteExtends": {
+        "start_btn": {
+          "frame": 1,
+          "events": {
+            "touchStart": [
+              {
+                "function": "replaceScene",
+                "args": {
+                  "scene": "root"
+                }
+              }
+            ]
+          }
+        },
+        "crane": {
+          "x": "#craneDown.crane.x",
+          "y": "#craneDown.crane.y",
+          "timelines": [
+            {
+              "type": "moveBy",
+              "x": 0, "y": -100, "frame": 20
+            },
+            {
+              "type": "then",
+              "callback": {
+                "function": "replaceScene",
+                "args": {
+                  "scene": "craneBack"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "drawOrder": [
+        "background",
+        "crane",
+        "start_btn"
+      ]
+    },
+    "craneBack": {
+      "spriteExtends": {
+        "start_btn": {
+          "frame": 1,
+          "events": {
+            "touchStart": [
+              {
+                "function": "replaceScene",
+                "args": {
+                  "scene": "root"
+                }
+              }
+            ]
+          }
+        },
+        "crane": {
+          "x": "#craneUp.crane.x",
+          "y": "#craneUp.crane.y",
+          "timelines": [
+            {
+              "type": "moveTo",
+              "x": 0,
+              "y": 0,
+              "frame": {
+                "function": "getBackFrame",
+                "args": {
+                  "x": "#craneUp.crane.x",
+                  "frame": 100
+                }
+              }
+            },
+            {
+              "type": "then",
+              "callback": {
+                "function": "replaceScene",
+                "args": {
+                  "scene": "root"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "drawOrder": [
+        "background",
+        "crane",
+        "start_btn"
+      ]
+    }
+  }
+}

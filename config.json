@@ -1,31 +1,38 @@
 {
-  "width": 640,
-  "height": 320,
+  "width": 767,
+  "height": 795,
   "fps": 20,
   "sprites": {
     "background": {
       "image": "img/background.png",
-      "width": 640,
-      "height": 320
+      "width": 767,
+      "height": 795
+    },
+    "foreground": {
+      "image": "img/foreground.png",
+      "width": 767,
+      "height": 795
     },
     "down_btn": {
       "image": "img/down.png",
       "x": 520,
-      "y": 260,
+      "y": 500,
       "width": 60,
       "height": 60
     },
     "start_btn": {
       "image": "img/start.png",
       "x": 580,
-      "y": 260,
+      "y": 500,
       "width": 60,
       "height": 60
     },
     "crane": {
       "image": "img/crane.png",
-      "width": 80,
-      "height": 160
+      "x": 540,
+      "y": 0,
+      "width": 183,
+      "height": 325
     }
   },
   "rootScene": "root",
@@ -48,6 +55,8 @@
       "drawOrder": [
         "background",
         "crane",
+        "foreground",
+        "down_btn",
         "start_btn"
       ]
     },
@@ -82,7 +91,7 @@
           "timelines": [
             {
               "type": "moveBy",
-              "x": 560, "y": 0, "frame": 100
+              "x": -540, "y": 0, "frame": 100
             },
             {
               "type": "then",
@@ -99,6 +108,7 @@
       "drawOrder": [
         "background",
         "crane",
+        "foreground",
         "down_btn",
         "start_btn"
       ]
@@ -141,6 +151,8 @@
       "drawOrder": [
         "background",
         "crane",
+        "foreground",
+        "down_btn",
         "start_btn"
       ]
     },
@@ -182,6 +194,8 @@
       "drawOrder": [
         "background",
         "crane",
+        "foreground",
+        "down_btn",
         "start_btn"
       ]
     },
@@ -206,7 +220,7 @@
           "timelines": [
             {
               "type": "moveTo",
-              "x": 0,
+              "x": 540,
               "y": 0,
               "frame": {
                 "function": "getBackFrame",
@@ -231,6 +245,8 @@
       "drawOrder": [
         "background",
         "crane",
+        "foreground",
+        "down_btn",
         "start_btn"
       ]
     }
